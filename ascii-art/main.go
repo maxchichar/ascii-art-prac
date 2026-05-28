@@ -38,18 +38,27 @@ func main()  {
 		return
 	}
 
-	if input == "" {
+	switch input{
+	case "", "\n":
 		return
 	}
 	
-	// userInput := strings.ReplaceAll(input)
+	userInput := strings.Split(strings.ReplaceAll(input, `\n`, "\n"), "\n")
 
-	for row := 0; row < 8; row++ {
-		for _, char := range input{
-			ascii_char := (char - 32) * 9 + 1
-			fmt.Print(lines[int(ascii_char) + row])
+	
+
+	for _, line := range userInput{
+		if line == ""{
+			fmt.Println()
+			continue
 		}
-		fmt.Println()
+		for row := 0; row < 8; row++ {
+			for _, char := range line{
+				ascii_char := (char - 32) * 9 + 1
+				fmt.Print(lines[int(ascii_char) + row])
+			}
+			fmt.Println()
+		}
 	}
 }
 
